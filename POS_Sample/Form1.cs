@@ -25,10 +25,6 @@ namespace POS_Sample
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {  
-            
-        }
         void DBConnect()
         {
             sql_con = new SQLiteConnection("Data Source=Demo.db;Version=3;New=False;Compress=True;");
@@ -44,11 +40,9 @@ namespace POS_Sample
             sql_con.Close();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form2 fm2 = new Form2();
-            fm2.ShowDialog();
+            dataGridView1.Rows.Add();
         }
     }
     public class SQliteDB : Object
