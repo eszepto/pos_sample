@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonDel = new System.Windows.Forms.Button();
             this.ButtonAdd = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -39,21 +45,64 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonPay = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColQuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.buttonApple = new System.Windows.Forms.Button();
+            this.buttonOrange = new System.Windows.Forms.Button();
+            this.buttonGrape = new System.Windows.Forms.Button();
+            this.buttonCola = new System.Windows.Forms.Button();
+            this.buttonWater = new System.Windows.Forms.Button();
             this.sQliteDBBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sQliteDBBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColID,
+            this.ColName,
+            this.ColPrice,
+            this.ColQty,
+            this.ColTotal});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 152);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView1.Size = new System.Drawing.Size(505, 256);
+            this.dataGridView1.TabIndex = 16;
+            // 
+            // ColID
+            // 
+            this.ColID.HeaderText = "ID";
+            this.ColID.Name = "ColID";
+            this.ColID.ReadOnly = true;
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Item Name";
+            this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
+            // 
+            // ColPrice
+            // 
+            this.ColPrice.HeaderText = "Price/Unit";
+            this.ColPrice.Name = "ColPrice";
+            this.ColPrice.ReadOnly = true;
+            // 
+            // ColQty
+            // 
+            this.ColQty.HeaderText = "Quantity";
+            this.ColQty.Name = "ColQty";
+            this.ColQty.ReadOnly = true;
+            // 
+            // ColTotal
+            // 
+            this.ColTotal.HeaderText = "Total";
+            this.ColTotal.Name = "ColTotal";
+            this.ColTotal.ReadOnly = true;
             // 
             // ButtonDel
             // 
@@ -159,100 +208,50 @@
             this.buttonPay.Text = "PAY";
             this.buttonPay.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // buttonApple
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColID,
-            this.ColName,
-            this.ColPrice,
-            this.ColQuan,
-            this.ColTotal});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 152);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(505, 256);
-            this.dataGridView1.TabIndex = 16;
+            this.buttonApple.Location = new System.Drawing.Point(26, 76);
+            this.buttonApple.Name = "buttonApple";
+            this.buttonApple.Size = new System.Drawing.Size(83, 50);
+            this.buttonApple.TabIndex = 17;
+            this.buttonApple.Text = "Apple";
+            this.buttonApple.UseVisualStyleBackColor = true;
             // 
-            // ColID
+            // buttonOrange
             // 
-            this.ColID.HeaderText = "ID";
-            this.ColID.Name = "ColID";
-            this.ColID.ReadOnly = true;
+            this.buttonOrange.Location = new System.Drawing.Point(131, 76);
+            this.buttonOrange.Name = "buttonOrange";
+            this.buttonOrange.Size = new System.Drawing.Size(83, 50);
+            this.buttonOrange.TabIndex = 18;
+            this.buttonOrange.Text = "Orange";
+            this.buttonOrange.UseVisualStyleBackColor = true;
             // 
-            // ColName
+            // buttonGrape
             // 
-            this.ColName.HeaderText = "Item Name";
-            this.ColName.Name = "ColName";
-            this.ColName.ReadOnly = true;
+            this.buttonGrape.Location = new System.Drawing.Point(238, 76);
+            this.buttonGrape.Name = "buttonGrape";
+            this.buttonGrape.Size = new System.Drawing.Size(83, 50);
+            this.buttonGrape.TabIndex = 19;
+            this.buttonGrape.Text = "Grape";
+            this.buttonGrape.UseVisualStyleBackColor = true;
             // 
-            // ColPrice
+            // buttonCola
             // 
-            this.ColPrice.HeaderText = "Price/Unit";
-            this.ColPrice.Name = "ColPrice";
-            this.ColPrice.ReadOnly = true;
+            this.buttonCola.Location = new System.Drawing.Point(346, 76);
+            this.buttonCola.Name = "buttonCola";
+            this.buttonCola.Size = new System.Drawing.Size(83, 50);
+            this.buttonCola.TabIndex = 20;
+            this.buttonCola.Text = "Cola";
+            this.buttonCola.UseVisualStyleBackColor = true;
             // 
-            // ColQuan
+            // buttonWater
             // 
-            this.ColQuan.HeaderText = "Quantity";
-            this.ColQuan.Name = "ColQuan";
-            this.ColQuan.ReadOnly = true;
-            // 
-            // ColTotal
-            // 
-            this.ColTotal.HeaderText = "Total";
-            this.ColTotal.Name = "ColTotal";
-            this.ColTotal.ReadOnly = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(26, 76);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(83, 50);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Apple";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(131, 76);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(83, 50);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Orange";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(238, 76);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(83, 50);
-            this.button5.TabIndex = 19;
-            this.button5.Text = "Punch";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(346, 76);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(83, 50);
-            this.button6.TabIndex = 20;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(450, 76);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(83, 50);
-            this.button7.TabIndex = 21;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonWater.Location = new System.Drawing.Point(450, 76);
+            this.buttonWater.Name = "buttonWater";
+            this.buttonWater.Size = new System.Drawing.Size(108, 50);
+            this.buttonWater.TabIndex = 21;
+            this.buttonWater.Text = "Water";
+            this.buttonWater.UseVisualStyleBackColor = true;
             // 
             // sQliteDBBindingSource
             // 
@@ -262,12 +261,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 448);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(680, 645);
+            this.Controls.Add(this.buttonWater);
+            this.Controls.Add(this.buttonCola);
+            this.Controls.Add(this.buttonGrape);
+            this.Controls.Add(this.buttonOrange);
+            this.Controls.Add(this.buttonApple);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonPay);
             this.Controls.Add(this.buttonClear);
@@ -299,18 +298,18 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button buttonPay;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource sQliteDBBindingSource;
+        private System.Windows.Forms.Button buttonApple;
+        private System.Windows.Forms.Button buttonOrange;
+        private System.Windows.Forms.Button buttonGrape;
+        private System.Windows.Forms.Button buttonCola;
+        private System.Windows.Forms.Button buttonWater;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColQuan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTotal;
-        private System.Windows.Forms.BindingSource sQliteDBBindingSource;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
