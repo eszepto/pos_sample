@@ -23,12 +23,15 @@ namespace POS_Sample
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            dataGridView1.AllowUserToAddRows = true;
             
             DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             row.Cells[0].Value = "XYZ";
             row.Cells[1].Value = 50.2;
 
             dataGridView1.Rows.Add(row);
+
+            dataGridView1.AllowUserToAddRows = false;
   
         }
 
@@ -55,6 +58,22 @@ namespace POS_Sample
                 //do something else
             }
             
+        }
+
+        private void ButtonDel_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete "+ dataGridView1.SelectedRows + "?", "Clear", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                {
+                    dataGridView1.Rows.RemoveAt(row.Index);
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
         }
     }
     public class StockDB : Object
