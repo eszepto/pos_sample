@@ -36,7 +36,6 @@ C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.csprojAssemblyRefe
 C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.Form1.resources
 C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.Form2.resources
 C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.Properties.Resources.resources
-C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.UserControl1.resources
 C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.csproj.GenerateResource.cache
 C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.csproj.CoreCompileInputs.cache
 C:\Users\B\Desktop\pos_sample\POS_Sample\obj\Debug\POS_Sample.csproj.CopyComplete

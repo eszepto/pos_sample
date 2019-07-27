@@ -71,6 +71,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(505, 256);
             this.dataGridView1.TabIndex = 16;
             // 
@@ -195,6 +196,7 @@
             this.buttonClear.TabIndex = 14;
             this.buttonClear.Text = "CLEAR";
             this.buttonClear.UseVisualStyleBackColor = false;
+            this.buttonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
             // buttonPay
             // 
@@ -252,16 +254,13 @@
             this.buttonWater.TabIndex = 21;
             this.buttonWater.Text = "Water";
             this.buttonWater.UseVisualStyleBackColor = true;
-            // 
-            // sQliteDBBindingSource
-            // 
-            this.sQliteDBBindingSource.DataSource = typeof(POS_Sample.SQliteDB);
+            this.buttonWater.Click += new System.EventHandler(this.ButtonWater_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 645);
+            this.ClientSize = new System.Drawing.Size(680, 425);
             this.Controls.Add(this.buttonWater);
             this.Controls.Add(this.buttonCola);
             this.Controls.Add(this.buttonGrape);
