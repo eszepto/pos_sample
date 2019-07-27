@@ -23,25 +23,36 @@ namespace POS_Sample
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            dataGridView1.AllowUserToAddRows = true;
+            List<string> data = stock.Query(textID.Text, textName.Text);
             
-            DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-            row.Cells[0].Value = "XYZ";
-            row.Cells[1].Value = 50.2;
+            if (data.Any())
+            {
+                dataGridView1.AllowUserToAddRows = true;
 
-            dataGridView1.Rows.Add(row);
+                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                row.Cells[0].Value = data[0];
+                row.Cells[1].Value = data[1];
+                row.Cells[2].Value = data[2];
+                row.Cells[3].Value = data[3];
 
-            dataGridView1.AllowUserToAddRows = false;
-  
+                dataGridView1.Rows.Add(row);
+
+                dataGridView1.AllowUserToAddRows = false;
+            }
+            else
+            {
+                InputBoxClear();
+            }
         }
 
         private void ButtonWater_Click(object sender, EventArgs e)
         {
-            
+        
             
             DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             row.Cells[0].Value = "XYZ";
             row.Cells[1].Value = "Water";
+            row.Cells[2].Value = 
 
             dataGridView1.Rows.Add(row);
         }
@@ -53,27 +64,22 @@ namespace POS_Sample
             {
                 dataGridView1.Rows.Clear();
             }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
-            
+                  
         }
 
         private void ButtonDel_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to delete "+ dataGridView1.SelectedRows + "?", "Clear", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-                {
-                    dataGridView1.Rows.RemoveAt(row.Index);
-                }
+                dataGridView1.Rows.RemoveAt(row.Index);
             }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
+        }
+
+        void InputBoxClear()
+        {
+            textID.Text = "";
+            textName.Text = "";
+            textQty.Text = "";
         }
     }
     public class StockDB : Object
@@ -87,7 +93,7 @@ namespace POS_Sample
 
         public StockDB()
         {
-            sql_con = new SQLiteConnection("Data Source=Demo.db;Version=3;New=False;Compress=True;");
+            sql_con = new SQLiteConnection("Data Source=Demo.db;Version=3;New=True;Compress=True;");
             this.Connect();
         }
 
@@ -105,23 +111,26 @@ namespace POS_Sample
             sql_con.Close();
         }
 
-        SQLiteDataReader query(string id, string name)
+        public List<string> Query(string id="", string name="")
         {
             List<string> strList = new List<string>();
 
             sql_con.Open();
             sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = String.Format("SELECT * FROM stock WHERE id={0} or name={1}", id, name);
+            sql_cmd.CommandText = "SELECT * FROM stock WHERE id='5' or name='apple'";
             sql_datareader = sql_cmd.ExecuteReader();
-
-
-            while(sql_datareader.Read())
+            
+            if (sql_datareader.HasRows)
             {
-                strList.Add(sql_datareader.GetString(0));
-            }
-            sql_con.Close();
 
-            return sql_datareader;
+                while (sql_datareader.Read())
+                {
+                    strList.Add(sql_datareader.GetString(0));
+                }
+            }
+
+            sql_con.Close();
+            return strList;
         }
     }
 }

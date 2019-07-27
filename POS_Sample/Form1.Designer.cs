@@ -35,11 +35,11 @@
             this.ColPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ButtonDel = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.ButtonAdd = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textID = new System.Windows.Forms.TextBox();
+            this.textName = new System.Windows.Forms.TextBox();
+            this.textQty = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -106,18 +106,18 @@
             this.ColTotal.Name = "ColTotal";
             this.ColTotal.ReadOnly = true;
             // 
-            // ButtonDel
+            // buttonDel
             // 
-            this.ButtonDel.BackColor = System.Drawing.Color.Firebrick;
-            this.ButtonDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ButtonDel.Location = new System.Drawing.Point(533, 161);
-            this.ButtonDel.Name = "ButtonDel";
-            this.ButtonDel.Size = new System.Drawing.Size(123, 51);
-            this.ButtonDel.TabIndex = 6;
-            this.ButtonDel.Text = "DEL";
-            this.ButtonDel.UseVisualStyleBackColor = false;
-            this.ButtonDel.Click += new System.EventHandler(this.ButtonDel_Click);
+            this.buttonDel.BackColor = System.Drawing.Color.Firebrick;
+            this.buttonDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonDel.Location = new System.Drawing.Point(533, 161);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(123, 51);
+            this.buttonDel.TabIndex = 6;
+            this.buttonDel.Text = "DEL";
+            this.buttonDel.UseVisualStyleBackColor = false;
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
             // ButtonAdd
             // 
@@ -131,31 +131,31 @@
             this.ButtonAdd.UseVisualStyleBackColor = false;
             this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
-            // textBox1
+            // textID
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(47, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(107, 26);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.Text = "123";
+            this.textID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textID.Location = new System.Drawing.Point(47, 27);
+            this.textID.Name = "textID";
+            this.textID.Size = new System.Drawing.Size(107, 26);
+            this.textID.TabIndex = 8;
+            this.textID.Text = "123";
             // 
-            // textBox2
+            // textName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(201, 24);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(155, 30);
-            this.textBox2.TabIndex = 9;
+            this.textName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textName.Location = new System.Drawing.Point(201, 24);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(155, 30);
+            this.textName.TabIndex = 9;
             // 
-            // textBox3
+            // textQty
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(426, 20);
-            this.textBox3.MaxLength = 3;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(70, 36);
-            this.textBox3.TabIndex = 10;
+            this.textQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textQty.Location = new System.Drawing.Point(426, 20);
+            this.textQty.MaxLength = 3;
+            this.textQty.Name = "textQty";
+            this.textQty.Size = new System.Drawing.Size(70, 36);
+            this.textQty.TabIndex = 10;
             // 
             // label1
             // 
@@ -274,11 +274,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textQty);
+            this.Controls.Add(this.textName);
+            this.Controls.Add(this.textID);
             this.Controls.Add(this.ButtonAdd);
-            this.Controls.Add(this.ButtonDel);
+            this.Controls.Add(this.buttonDel);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -289,11 +289,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button ButtonDel;
+        private System.Windows.Forms.Button buttonDel;
         private System.Windows.Forms.Button ButtonAdd;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textID;
+        private System.Windows.Forms.TextBox textName;
+        private System.Windows.Forms.TextBox textQty;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
