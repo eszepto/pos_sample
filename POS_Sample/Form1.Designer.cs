@@ -51,6 +51,8 @@
             this.buttonCola = new System.Windows.Forms.Button();
             this.buttonWater = new System.Windows.Forms.Button();
             this.sQliteDBBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sQliteDBBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -138,7 +140,6 @@
             this.textID.Name = "textID";
             this.textID.Size = new System.Drawing.Size(107, 26);
             this.textID.TabIndex = 8;
-            this.textID.Text = "123";
             // 
             // textName
             // 
@@ -211,6 +212,7 @@
             this.buttonPay.TabIndex = 15;
             this.buttonPay.Text = "PAY";
             this.buttonPay.UseVisualStyleBackColor = false;
+            this.buttonPay.Click += new System.EventHandler(this.ButtonPay_Click);
             // 
             // buttonApple
             // 
@@ -258,11 +260,30 @@
             this.buttonWater.UseVisualStyleBackColor = true;
             this.buttonWater.Click += new System.EventHandler(this.ButtonWater_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(447, 416);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Total :";
+            // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Location = new System.Drawing.Point(482, 416);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(0, 13);
+            this.labelTotal.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 425);
+            this.ClientSize = new System.Drawing.Size(680, 438);
+            this.Controls.Add(this.labelTotal);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonWater);
             this.Controls.Add(this.buttonCola);
             this.Controls.Add(this.buttonGrape);
@@ -311,6 +332,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTotal;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelTotal;
     }
 }
 

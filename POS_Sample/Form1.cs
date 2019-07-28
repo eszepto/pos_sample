@@ -48,14 +48,24 @@ namespace POS_Sample
 
         private void ButtonWater_Click(object sender, EventArgs e)
         {
-        
+
+
+            List<string> data = stock.Query("","water");
+
             
+            dataGridView1.AllowUserToAddRows = true;
+
             DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-            row.Cells[0].Value = "XYZ";
-            row.Cells[1].Value = "Water";
-            row.Cells[2].Value = 
+            row.Cells[0].Value = data[0];
+            row.Cells[1].Value = data[1];
+            row.Cells[2].Value = data[2];
+            
+
 
             dataGridView1.Rows.Add(row);
+
+            dataGridView1.AllowUserToAddRows = false;
+            
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -81,6 +91,22 @@ namespace POS_Sample
             textID.Text = "";
             textName.Text = "";
             textQty.Text = "";
+        }
+
+        private void ButtonPay_Click(object sender, EventArgs e)
+        {
+            labelTotal.Text = GetTotalPrice().ToString();   
+        }
+
+        private double GetTotalPrice()
+        {
+            double TotalPrice=0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                TotalPrice += double.Parse(row.Cells[4].Value.ToString());
+            }
+            
+            return TotalPrice;
         }
     }
     public class StockDB : Object
@@ -126,16 +152,14 @@ namespace POS_Sample
 
             if (sql_datareader.HasRows)
             {
-                while (sql_datareader.Read())  /// <<< Why this False  ?????   2.44 28/7/2019 
+                while (sql_datareader.Read())  
                 {
-
                     strList.Add(sql_datareader["id"].ToString());
                     strList.Add(sql_datareader["name"].ToString());
                     strList.Add(sql_datareader["price"].ToString());
-
                 }
             }
-       
+
             sql_con.Close();
             return strList;
         }
