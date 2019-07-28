@@ -23,9 +23,10 @@ namespace POS_Sample
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            List<string> data = stock.Query(textID.Text, textName.Text);
             
-            if (data.Any())
+            List<string> data = stock.Query(textID.Text,textName.Text);
+
+            if (data.Count != 0)
             {
                 dataGridView1.AllowUserToAddRows = true;
 
@@ -33,7 +34,7 @@ namespace POS_Sample
                 row.Cells[0].Value = data[0];
                 row.Cells[1].Value = data[1];
                 row.Cells[2].Value = data[2];
-                row.Cells[3].Value = data[3];
+                row.Cells[3].Value = textQty.Text;
 
                 dataGridView1.Rows.Add(row);
 
@@ -93,7 +94,7 @@ namespace POS_Sample
 
         public StockDB()
         {
-            sql_con = new SQLiteConnection("Data Source=Demo.db;Version=3;New=True;Compress=True;");
+            sql_con = new SQLiteConnection("Data Source=Demo.db");
             this.Connect();
         }
 
@@ -113,22 +114,28 @@ namespace POS_Sample
 
         public List<string> Query(string id="", string name="")
         {
+            sql_con = new SQLiteConnection("Data Source=Demo.db");
+            this.Connect();
+
             List<string> strList = new List<string>();
 
             sql_con.Open();
             sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = "SELECT * FROM stock WHERE id='5' or name='apple'";
+            sql_cmd.CommandText = String.Format("select * from stock where id='{0}' or name='{1}'",id,name);
             sql_datareader = sql_cmd.ExecuteReader();
-            
+
             if (sql_datareader.HasRows)
             {
-
-                while (sql_datareader.Read())
+                while (sql_datareader.Read())  /// <<< Why this False  ?????   2.44 28/7/2019 
                 {
-                    strList.Add(sql_datareader.GetString(0));
+
+                    strList.Add(sql_datareader["id"].ToString());
+                    strList.Add(sql_datareader["name"].ToString());
+                    strList.Add(sql_datareader["price"].ToString());
+
                 }
             }
-
+       
             sql_con.Close();
             return strList;
         }
