@@ -33,7 +33,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.textCash = new System.Windows.Forms.TextBox();
             this.textBalance = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonOK = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,17 +72,18 @@
             this.textBalance.Size = new System.Drawing.Size(226, 35);
             this.textBalance.TabIndex = 3;
             // 
-            // button1
+            // buttonOK
             // 
-            this.button1.BackColor = System.Drawing.Color.PaleGreen;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(282, 232);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 75);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = false;
+            this.buttonOK.BackColor = System.Drawing.Color.PaleGreen;
+            this.buttonOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonOK.Location = new System.Drawing.Point(282, 232);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(136, 75);
+            this.buttonOK.TabIndex = 4;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.UseVisualStyleBackColor = false;
+            this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // label1
             // 
@@ -103,7 +104,7 @@
             this.label2.Size = new System.Drawing.Size(53, 24);
             this.label2.TabIndex = 6;
             this.label2.Text = "Cash";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
+          
             // 
             // label3
             // 
@@ -123,7 +124,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.textBalance);
             this.Controls.Add(this.textCash);
             this.Controls.Add(this.textTotal);
@@ -140,7 +141,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox textCash;
         private System.Windows.Forms.TextBox textBalance;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

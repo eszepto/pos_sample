@@ -18,9 +18,11 @@ namespace POS_Sample
             InitializeComponent();
         }
 
-        private void Label2_Click(object sender, EventArgs e)
+        
+
+        private void ButtonOK_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -14,31 +14,49 @@ namespace POS_Sample
     public partial class Form1 : Form
     {
 
-        StockDB stock;
+        private StockDB stock;
+        private OrderDB order;
+        private DataSet DS = new DataSet();
+        private DataTable DT = new DataTable();
+
+        
         public Form1()
         {
             stock = new StockDB();
+            order = new OrderDB();
             InitializeComponent();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             
-            List<string> data = stock.Query(textID.Text,textName.Text);
-
+            List<string> data = stock.Read(textID.Text,textName.Text);
+           
             if (data.Count != 0)
             {
+                if(false) /// item isn't in order  -> add item to order
+                {
+                    order.Query("insert");
+                }
+                else /// item is already in order
+                {
+
+                }
+
+                /*
                 dataGridView1.AllowUserToAddRows = true;
 
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 row.Cells[0].Value = data[0];
                 row.Cells[1].Value = data[1];
                 row.Cells[2].Value = data[2];
+
                 row.Cells[3].Value = textQty.Text;
 
                 dataGridView1.Rows.Add(row);
 
                 dataGridView1.AllowUserToAddRows = false;
+                */
             }
             else
             {
@@ -50,7 +68,7 @@ namespace POS_Sample
         {
 
 
-            List<string> data = stock.Query("","water");
+            List<string> data = stock.Read("","water");
 
             
             dataGridView1.AllowUserToAddRows = true;
@@ -95,7 +113,11 @@ namespace POS_Sample
 
         private void ButtonPay_Click(object sender, EventArgs e)
         {
-            labelTotal.Text = GetTotalPrice().ToString();   
+            labelTotal.Text = GetTotalPrice().ToString();
+            Form2 fm2 = new Form2();
+            this.Hide();
+            fm2.ShowDialog();
+            this.Show();
         }
 
         private double GetTotalPrice()
@@ -108,7 +130,28 @@ namespace POS_Sample
             
             return TotalPrice;
         }
+
+        private void dtgRefresh()
+        {
+            using (SQLiteConnection sqlCon = new SQLiteConnection("Data Source=order_temp.db"))
+            {
+                sqlCon.Open();
+                SQLiteDataAdapter DA = new SQLiteDataAdapter("select * from `order`", order.sql_con);
+                DataTable dt = new DataTable();
+                DA.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+        }
+
+        private void ButtonApple_Click(object sender, EventArgs e)
+        {
+            dtgRefresh();
+        }
     }
+
+
+
+
     public class StockDB : Object
     {
         private SQLiteConnection sql_con;
@@ -121,10 +164,10 @@ namespace POS_Sample
         public StockDB()
         {
             sql_con = new SQLiteConnection("Data Source=Demo.db");
-            this.Connect();
+            this.CreateTable();
         }
 
-        void Connect()
+        void CreateTable()
         {
             sql_con.Open();
             sql_cmd = sql_con.CreateCommand();
@@ -138,10 +181,9 @@ namespace POS_Sample
             sql_con.Close();
         }
 
-        public List<string> Query(string id="", string name="")
+        public List<string> Read(string id="", string name="")
         {
-            sql_con = new SQLiteConnection("Data Source=Demo.db");
-            this.Connect();
+           
 
             List<string> strList = new List<string>();
 
@@ -162,6 +204,49 @@ namespace POS_Sample
 
             sql_con.Close();
             return strList;
+        }
+    }
+    public class OrderDB : Object
+    {
+        public SQLiteConnection sql_con;
+        public SQLiteCommand sql_cmd;
+
+        private DataSet DS = new DataSet();
+        private DataTable DT = new DataTable();
+        private SQLiteDataReader sql_datareader;
+        public SQLiteDataAdapter DA;
+        public OrderDB()
+        {
+            sql_con = new SQLiteConnection("Data Source=order_temp.db;new=True");
+            //this.CreateTable();
+        }
+
+        public void CreateTable()
+        {
+            sql_con.Open();
+            sql_cmd = sql_con.CreateCommand();
+            sql_cmd.CommandText = "drop table if exists `order`;" +
+                "CREATE TABLE " +
+                "`order` (" +
+                "`id`TEXT NOT NULL UNIQUE," +
+                "`name`TEXT NOT NULL UNIQUE," +
+                "`price`DOUB NOT NULL," +
+                "`qty`INTEGER NOT NULL," +
+                "`total`DOUB NOT NULL);";
+            sql_cmd.ExecuteNonQuery();
+            sql_con.Close();
+        }
+        public void Read()
+        {
+
+        }
+        public void Query(string command)
+        {
+            sql_con.Open();
+            sql_cmd = sql_con.CreateCommand();
+            sql_cmd.CommandText = command;
+            sql_cmd.ExecuteNonQuery();
+            sql_con.Close();
         }
     }
 }
