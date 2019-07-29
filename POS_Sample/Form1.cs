@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Windows.Forms;
 
+/* [+]Bug found:
+ *  - empty box/ input validation
+ *  - !!!! when update qty  Database lock !!!!
+ *  - Problem with Public obj ?
+ */  
 namespace POS_Sample
 {
     public partial class Form1 : Form
@@ -19,71 +24,53 @@ namespace POS_Sample
         private DataSet DS = new DataSet();
         private DataTable DT = new DataTable();
 
-        
         public Form1()
         {
             stock = new StockDB();
             order = new OrderDB();
             InitializeComponent();
+            dtgRefresh();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            
-            List<string> data = stock.Read(textID.Text,textName.Text);
-           
-            if (data.Count != 0)
+            float total;
+            string command;
+            string inputID = textID.Text;
+            string inputName = textName.Text;
+            string inputQty = textQty.Text;
+
+            List<string> data = stock.Read(inputID,inputName);   ///0:id  1:name  2:price 
+
+            if (data.Count != 0) //input check
             {
-                if(false) /// item isn't in order  -> add item to order
+                if (order.IsInTable(textID.Text, textName.Text)) /// item is already in order
                 {
-                    order.Query("insert");
+                    string inOrderQty = order.GetQty(inputID, inputName);
+                    total = (float.Parse(data[2]) *  ( float.Parse(inOrderQty) + float.Parse(inputQty) )  );
+
+                    command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE id='{2}' or name='{3}' ", inputQty, total.ToString(), inputID, inputName);///Error Here
                 }
-                else /// item is already in order
+
+                else /// item isn't in order  -> add item to order
                 {
-
+                    total = (float.Parse(data[2]) * float.Parse(textQty.Text));
+                    command = string.Format("INSERT INTO 'order' VALUES('{0}', '{1}', {2}, {3}, {4});", data[0], data[1], data[2], textQty.Text, total.ToString()); 
                 }
 
-                /*
-                dataGridView1.AllowUserToAddRows = true;
-
-                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                row.Cells[0].Value = data[0];
-                row.Cells[1].Value = data[1];
-                row.Cells[2].Value = data[2];
-
-                row.Cells[3].Value = textQty.Text;
-
-                dataGridView1.Rows.Add(row);
-
-                dataGridView1.AllowUserToAddRows = false;
-                */
             }
             else
             {
                 InputBoxClear();
+                return;
             }
+            order.Query(command);
+            dtgRefresh();
         }
 
         private void ButtonWater_Click(object sender, EventArgs e)
         {
-
-
             List<string> data = stock.Read("","water");
-
-            
-            dataGridView1.AllowUserToAddRows = true;
-
-            DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-            row.Cells[0].Value = data[0];
-            row.Cells[1].Value = data[1];
-            row.Cells[2].Value = data[2];
-            
-
-
-            dataGridView1.Rows.Add(row);
-
-            dataGridView1.AllowUserToAddRows = false;
-            
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -140,6 +127,7 @@ namespace POS_Sample
                 DataTable dt = new DataTable();
                 DA.Fill(dt);
                 dataGridView1.DataSource = dt;
+                sqlCon.Close();
             }
         }
 
@@ -183,8 +171,6 @@ namespace POS_Sample
 
         public List<string> Read(string id="", string name="")
         {
-           
-
             List<string> strList = new List<string>();
 
             sql_con.Open();
@@ -205,6 +191,7 @@ namespace POS_Sample
             sql_con.Close();
             return strList;
         }
+
     }
     public class OrderDB : Object
     {
@@ -218,7 +205,7 @@ namespace POS_Sample
         public OrderDB()
         {
             sql_con = new SQLiteConnection("Data Source=order_temp.db;new=True");
-            //this.CreateTable();
+            this.CreateTable();
         }
 
         public void CreateTable()
@@ -236,17 +223,44 @@ namespace POS_Sample
             sql_cmd.ExecuteNonQuery();
             sql_con.Close();
         }
-        public void Read()
+        public bool IsInTable(string id = "", string name = "")
         {
+            bool hasrow;
+
+            sql_con.Open();
+            sql_cmd = sql_con.CreateCommand();
+            sql_cmd.CommandText = String.Format("select * from `order` where id='{0}' or name='{1}'", id, name);
+            sql_datareader = sql_cmd.ExecuteReader();
+
+            hasrow = sql_datareader.HasRows;
+            sql_con.Close();
+
+            return hasrow;
 
         }
         public void Query(string command)
         {
+            
             sql_con.Open();
             sql_cmd = sql_con.CreateCommand();
             sql_cmd.CommandText = command;
             sql_cmd.ExecuteNonQuery();
             sql_con.Close();
+        }
+        public string GetQty(string id, string name) ///ProblemHere
+        {
+            string qty;
+            
+            this.sql_con.Open();
+            sql_cmd = sql_con.CreateCommand();
+            sql_cmd.CommandText = String.Format("select * from `order` where id='{0}' or name='{1}'", id, name);
+            sql_datareader = sql_cmd.ExecuteReader();
+
+            sql_datareader.Read();
+            qty = sql_datareader["qty"].ToString();
+            
+            sql_con.Close();
+            return qty;
         }
     }
 }
