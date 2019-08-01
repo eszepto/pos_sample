@@ -18,6 +18,7 @@ namespace POS_Sample
 {
     public partial class Form1 : Form
     {
+        
 
         private StockDB stock;
         private OrderDB order;
@@ -29,11 +30,12 @@ namespace POS_Sample
             stock = new StockDB();
             order = new OrderDB();
             InitializeComponent();
-            dtgRefresh();
+            DatagridRefresh();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            
             float total;
             string command;
             string inputID = textID.Text;
@@ -66,7 +68,8 @@ namespace POS_Sample
                 return;
             }
             order.Query(command);
-            dtgRefresh();
+            DatagridRefresh();
+            InputBoxClear();
         }
 
         private void ButtonWater_Click(object sender, EventArgs e)
@@ -86,7 +89,7 @@ namespace POS_Sample
                 float newQty = inOrderQty + inputQty;
                 total = (float.Parse(data[2]) * (inOrderQty + inputQty));
 
-                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='apple' ", newQty.ToString(), total.ToString());
+                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='{2}' ", newQty.ToString(), total.ToString(), inputName);
             }
 
             else /// item isn't in order  -> add item to order
@@ -96,7 +99,7 @@ namespace POS_Sample
             }
 
             order.Query(command);
-            dtgRefresh();
+            DatagridRefresh();
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -144,7 +147,7 @@ namespace POS_Sample
             return TotalPrice;
         }
 
-        private void dtgRefresh()
+        private void DatagridRefresh()
         {
             using (SQLiteConnection sqlCon = new SQLiteConnection("Data Source=order_temp.db"))
             {
@@ -174,7 +177,7 @@ namespace POS_Sample
                 float newQty = inOrderQty + inputQty;
                 total = (float.Parse(data[2]) * (inOrderQty + inputQty));
 
-                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='apple' ", newQty.ToString(), total.ToString());
+                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='{2}' ", newQty.ToString(), total.ToString(), inputName);
             }
 
             else /// item isn't in order  -> add item to order
@@ -184,7 +187,7 @@ namespace POS_Sample
             }
 
             order.Query(command);
-            dtgRefresh();
+            DatagridRefresh();
 
         }
 
@@ -205,7 +208,7 @@ namespace POS_Sample
                 float newQty = inOrderQty + inputQty;
                 total = (float.Parse(data[2]) * (inOrderQty + inputQty));
 
-                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='apple' ", newQty.ToString(), total.ToString());
+                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='{2}' ", newQty.ToString(), total.ToString(), inputName);
             }
 
             else /// item isn't in order  -> add item to order
@@ -215,7 +218,7 @@ namespace POS_Sample
             }
 
             order.Query(command);
-            dtgRefresh();
+            DatagridRefresh();
         }
 
         private void ButtonGrape_Click(object sender, EventArgs e)
@@ -235,7 +238,7 @@ namespace POS_Sample
                 float newQty = inOrderQty + inputQty;
                 total = (float.Parse(data[2]) * (inOrderQty + inputQty));
 
-                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='apple' ", newQty.ToString(), total.ToString());
+                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='{2}' ", newQty.ToString(), total.ToString(), inputName);
             }
 
             else /// item isn't in order  -> add item to order
@@ -245,7 +248,7 @@ namespace POS_Sample
             }
 
             order.Query(command);
-            dtgRefresh();
+            DatagridRefresh();
         }
 
         private void ButtonCola_Click(object sender, EventArgs e)
@@ -265,7 +268,7 @@ namespace POS_Sample
                 float newQty = inOrderQty + inputQty;
                 total = (float.Parse(data[2]) * (inOrderQty + inputQty));
 
-                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='apple' ", newQty.ToString(), total.ToString());
+                command = string.Format("UPDATE 'order' SET qty={0}, total={1} WHERE name='{2}' ", newQty.ToString(), total.ToString(), inputName);
             }
 
             else /// item isn't in order  -> add item to order
@@ -275,7 +278,7 @@ namespace POS_Sample
             }
 
             order.Query(command);
-            dtgRefresh();
+            DatagridRefresh();
         }
     }
 
