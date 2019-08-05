@@ -114,10 +114,13 @@ namespace POS_Sample
 
         private void ButtonDel_Click(object sender, EventArgs e)
         {
+            string command = "";
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
-                dataGridView1.Rows.RemoveAt(row.Index);
+                command = string.Format("DELETE FROM 'order' where id='{0}'",row.Cells[0].Value);
+                order.Query(command);
             }
+            DatagridRefresh();
         }
 
         void InputBoxClear()
