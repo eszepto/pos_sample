@@ -133,7 +133,7 @@ namespace POS_Sample
         private void ButtonPay_Click(object sender, EventArgs e)
         {
             labelTotal.Text = GetTotalPrice().ToString();
-            Form2 fm2 = new Form2();
+            Form2 fm2 = new Form2(labelTotal.Text);
             this.Hide();
             fm2.ShowDialog();
             this.Show();

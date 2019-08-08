@@ -19,7 +19,7 @@ namespace POS_Sample
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 fm1 = new Form1();
-            Form2 fm2 = new Form2();
+            
             Application.Run(fm1);
         }
 
