@@ -161,6 +161,7 @@ namespace POS_Sample
                 dataGridView1.DataSource = dt;
                 sqlCon.Close();
             }
+            labelTotal.Text = GetTotalPrice().ToString();
         }
 
         private void ButtonApple_Click(object sender, EventArgs e)

@@ -47,7 +47,8 @@
             this.textTotal.Name = "textTotal";
             this.textTotal.ReadOnly = true;
             this.textTotal.Size = new System.Drawing.Size(226, 35);
-            this.textTotal.TabIndex = 0;
+            this.textTotal.TabIndex = 1;
+            this.textTotal.TabStop = false;
             // 
             // contextMenuStrip1
             // 
@@ -60,7 +61,7 @@
             this.textCash.Location = new System.Drawing.Point(247, 88);
             this.textCash.Name = "textCash";
             this.textCash.Size = new System.Drawing.Size(226, 35);
-            this.textCash.TabIndex = 2;
+            this.textCash.TabIndex = 0;
             // 
             // textBalance
             // 
@@ -71,6 +72,7 @@
             this.textBalance.ReadOnly = true;
             this.textBalance.Size = new System.Drawing.Size(226, 35);
             this.textBalance.TabIndex = 3;
+            this.textBalance.TabStop = false;
             // 
             // buttonOK
             // 
@@ -80,7 +82,7 @@
             this.buttonOK.Location = new System.Drawing.Point(282, 232);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(136, 75);
-            this.buttonOK.TabIndex = 4;
+            this.buttonOK.TabIndex = 1;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = false;
             this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
@@ -104,7 +106,6 @@
             this.label2.Size = new System.Drawing.Size(53, 24);
             this.label2.TabIndex = 6;
             this.label2.Text = "Cash";
-          
             // 
             // label3
             // 
